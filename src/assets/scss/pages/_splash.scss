@@ -1,0 +1,12 @@
+/* splash */
+.splash {
+    @include overlay;
+    background-color: $color-primary;
+    color: $color-white;
+    font-size: 48px;
+    img {
+        &.animated {
+            animation: blinking 1.5s ease-in-out infinite;
+        }
+    }
+}

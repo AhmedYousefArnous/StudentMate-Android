@@ -1,0 +1,70 @@
+// Fonts
+$font-family: 'Gabriol';
+// colors
+
+$color-primary:#d100d8;
+$color-primary-light: #f718ff;
+$color-primary-dark: #9b00a0;
+
+$color-secondary: #fe5722;
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-white: #fff;
+$color-white-primary: #e9e9e9;
+$color-white-secondary: #ebebeb;
+
+
+$color-black: #000000;
+$color-black-primary: #1d1d1d;
+$color-black-secondary: #2c2c2c;
+
+$color-gray: #444444;
+
+
+$main-color: rgba(#9c27b0,.9);
+$gray-color: #DDD;
+
+// directions
+$float-left: left;
+$float-right: right;
+$text-left: left;
+$text-right: right;
+
+// directions
+$dirs: top bottom right left;
+
+// colors
+// transperant nile green green-light red purple orange-dark orange pink
+$colors-list: (
+                            nile:#008eff,
+                            green-dark:#08dd08,
+                            green:  #4aff0c,
+                            red:#ff2828,
+                            purple:#d100d8,
+                            orange:#ff7900 ,
+                            orange-dark:#ff4000,
+                            pink:#ff00c2,
+                            rose: #e91e63,
+                            white: #FFF,
+                            gray: #656565,
+                            gray-dark: #333
+                        );
+
+// media Query
+$max-mobile : "(max-width: 767)";
+
+// media Queries
+$max-width-xs: 576px;
+
+$min-width-sm: 577px;
+$max-width-sm: 767px;
+
+$min-width-md: 768px;
+$max-width-md: 991px;
+
+$min-width-lg: 992px;
+$max-width-lg: 1999px;
+
+$min-width-xl: 1200px;
+
