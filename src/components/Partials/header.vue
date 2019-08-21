@@ -1,13 +1,13 @@
 <template>
-    <div class="row justify-content-between px-3 py-2"
+    <div class="row justify-content-between px-4 py-2 header"
         :class="[background, color]"
         >
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars mt-3"></i>
         <!-- <i class="fa fa-sign-out"></i> -->
-        <img src="/static/img/logo-invert.png" alt=""  class="col-9">
+        <img src="/static/img/logo-invert.png" alt=""  class="col-9 col-md-4 col-lg-3">
         <router-link
             tag="i"
-            class="fa fa-gear"
+            class="fa fa-gear mt-3"
             to="/Settings"
             ></router-link>
     </div>
@@ -26,12 +26,25 @@ export default {
     }
 }
 </script>
-<style scoped>
-    div {
-        position: absolute;
+<style scoped lang="scss">
+    @import "../../assets/scss/Abstractions/variables";
+
+    .header {
+        z-index: 3;
+        background-color: $color-primary;
+        padding: 10px 15px;
+        font-size: 24px;
+        color: white;
+        position: fixed;
         top: 0;
         left: 15px;
-        width: 100%
+        width: 100vw;
+        
+    }
+    div {
+        // left: 15px;
+        // width: 100%
+    
     }
     .fa {
         font-size: 28px;

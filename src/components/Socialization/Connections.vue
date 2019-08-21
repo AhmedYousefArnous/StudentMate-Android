@@ -35,7 +35,7 @@
             v-for="(connection, i)  in Connections"
             :label="connection.name"
             :content="connection.faculty"
-            :key="i"
+            :key="i * 2"
             @clicked="remove(i)"
             >
             <img  slot="icon" :src="connection.icon" class="avatar avatar-conversation" alt="">
@@ -57,7 +57,7 @@
             class="col-11 col-md-5 mx-3" 
             @clicked="remove(i)"
             v-for="(connection, i)  in Connections"
-            :key="i"
+            :key="i * 2"
             iconClass="fa-close"
             >
             <img  slot="icon" :src="connection.icon" class="avatar avatar-conversation" alt="">
@@ -78,7 +78,7 @@
             color="#8d8d8d"
             class="col-11 col-md-5 mx-3 connecting-connections"             
             v-for="(connection, i)  in Connections"
-            :key="i"
+            :key="i * 2"
             iconClass="fa-close"
             @clicked="remove(i)"
             >
@@ -105,27 +105,27 @@ export default {
                 {
                     name: 'John Doe',
                     faculty: 'Faculty of Engineering',
-                    icon: '/Static/profile.png'
+                    icon: '/static/profile.png'
                 },
                 {
                     name: 'John Doe 2',
                     faculty: 'Faculty of Engineering',
-                    icon: '/Static/profile.png'
+                    icon: '/static/profile.png'
                 },
                 {
                     name: 'John Doe 3',
                     faculty: 'Faculty of Engineering',
-                    icon: '/Static/profile.png'
+                    icon: '/static/profile.png'
                 },
                 {
                     name: 'John Doe 4',
                     faculty: 'Faculty of Engineering',
-                    icon: '/Static/profile.png'
+                    icon: '/static/profile.png'
                 },
                 {
                     name: 'John Doe 5',
                     faculty: 'Faculty of Engineering',
-                    icon: '/Static/profile.png'
+                    icon: '/static/profile.png'
                 }
                 
             ]

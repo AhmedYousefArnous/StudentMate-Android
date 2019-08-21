@@ -27,7 +27,6 @@ import Recommendation from '../components/Materials/Recommendation'
 import LectureDetails from '../components/Materials/LectureDetails'
 
 Vue.use(Router)
-
 export default new Router({
   // base: window.location.pathname,
   routes: [

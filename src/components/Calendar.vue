@@ -17,7 +17,7 @@
             v-for="(dailyAttendance, i ) in days"
             :key="i"
           >
-            <h3 class="text-center py-2 font-weight-bold">
+            <h3 class="text-center py-3 font-weight-bold">
               {{dailyAttendance.dayText}}
             </h3>
             <calendar-badge
@@ -92,7 +92,7 @@ export default {
           ]
         },
         {
-          day: "Sunday",
+          dayText: "Sunday",
           lectures: [
             {
               id: "1",
