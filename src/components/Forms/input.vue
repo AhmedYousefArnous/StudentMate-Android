@@ -1,10 +1,26 @@
  <template>
   <div class="form-group d-flex justify-content-center pt-2">
-    <input :type="type" class="form-control col-9 text-center" :placeholder="placeholder">
+    <input 
+        :type="type" 
+        class="form-control col-9 text-center" 
+        :placeholder="placeholder" 
+        v-model="value"
+        @input="valueChanged"
+        >
   </div>
 </template>
 <script>
 export default {
+    data: function () {
+        return {
+            value: ''
+        }
+    },
+    methods: {
+        valueChanged() {
+            this.$emit('valueChanged', this.value);
+        }
+    },
     props: {
         placeholder: {
             type: String,

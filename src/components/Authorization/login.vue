@@ -2,11 +2,14 @@
   <form class="py-3">
     <input-form
       class="row"
+      @valueChanged="userCredentials.username = $event"
       placeholder="Enter Your Username."
+
       ></input-form>
     <input-form
       class="row"
-      type="password"    
+      type="password"
+      @valueChanged="userCredentials.password = $event"          
       placeholder="Enter Your Password."
       ></input-form>
     <div
@@ -22,11 +25,25 @@
 </template>
 <script>
 import input from '../Forms/input.vue'
+import {mapActions} from 'vuex'
+
 export default {
+  data: function () {
+    return {
+        userCredentials: {
+            username: '',
+            password: ''
+        }
+    }
+  },
   methods: {
+    ...mapActions([
+      'login'
+    ]),
     login() {
       // Login Http Logic
-      this.$router.push('/main');
+      this.$store.dispatch('login', this.userCredentials);
+      // this.$router.push('/main');
     }
   },
   components: {

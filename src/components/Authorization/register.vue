@@ -32,12 +32,19 @@
 </template>
 <script>
 import input from '../Forms/input.vue'
+import {mapActions} from 'vuex'
+
 export default {
   methods: {
+    // ...mapActions([
+    //   'register'
+    // ]),
     register() {
-
       // Register Http Logic
-      this.$router.push('/main');
+      // this.$store.dispatch('register', {
+
+      // });
+      // this.$router.push('/main');
     }
   },
   components: {
