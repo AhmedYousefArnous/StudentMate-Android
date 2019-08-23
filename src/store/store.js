@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-import student from './modules/student'
+import student from './modules/Student/student'
 
 import * as actions from './actions'
 import * as mutations from './mutations'

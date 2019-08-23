@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'jquery'
 import Vue from 'vue'
+import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
 import {store} from './store/store'
@@ -25,12 +26,21 @@ Vue.directive('material', {
   }
 })
 
+// Vue.use(VueResource);
+// Vue.http.options.root = "http://localhost:8000";
+// Vue.http.interceptors.push((request) => {
+//   request.headers.set('content-type', 'application/x-www-form-urlencoded');
+//   request.headers.set('accept', 'application/json');
+//   // request.headers.set('authorization', 'Bearer ' + store.state.token );
+// })
 
-new Vue({
+
+export const mainVue = new Vue({
   el: '#app',
   router,
   store,
   // components: { App },
-  render: h => h(App)
+  render: h => h(App),
+  
   // template: '<App/>'
 })

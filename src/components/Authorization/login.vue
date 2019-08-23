@@ -43,7 +43,6 @@ export default {
     login() {
       // Login Http Logic
       this.$store.dispatch('login', this.userCredentials);
-      // this.$router.push('/main');
     }
   },
   components: {
