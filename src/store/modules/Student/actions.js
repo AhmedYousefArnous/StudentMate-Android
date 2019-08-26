@@ -55,3 +55,19 @@ export const register = ({commit} , payload) => {
         }
       );
 }
+
+export const updateFirstTimeContent = ({commit}) => {
+  globalState.httpSettings.url = `${globalState.host}/api/first/content`;
+  globalState.httpSettings.method = 'GET';
+  
+    
+  $.ajax(globalState.httpSettings)
+    .done(function (response) {
+      commit('setResponseData', response);
+    }).
+    catch(
+      function (response) {
+        commit('setResponseData', response);
+      }
+    );
+}

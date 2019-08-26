@@ -4,19 +4,23 @@
             Academic Information
       </h3>
       <div class="row justify-content-center">      
-        <select class="custom-select col-9 my-3">
-            <option selected>Select your university</option>        
-            <option value="1">Mansoursa University</option>
+        <select class="custom-select col-9 my-3" v-model="selected.university" @change="change">
+            <option 
+                v-for="university in universities.data"
+                :key="university.id"
+                :value="university.id"
+            >{{university.name}}</option>
         </select>
-        <select class="custom-select col-9 my-3">
+        <!-- <select class="custom-select col-9 my-3" v-if="$refs.universityRef.value != 0">
             <option selected>Select your faculty</option>        
             <option value="1">Faculty Of Engineering</option>
-        </select>
-        <select class="custom-select col-9 my-3">
-            <option selected>Select your department</option>
-            <option value="1">Computer Science &amp; Systems</option>
-            <option value="2">Mechanical </option>
-            <option value="3">Civil </option>
+        </select> -->
+        <select class="custom-select col-9 my-3" v-model="selected.faculty" v-if="selected.university">
+            <option 
+                v-for="faculty in faculties"
+                :key="faculty.id"
+                :value="faculty.id"
+            >{{faculty.name}}</option>
         </select>
         <select class="custom-select col-9 my-3">
             <option selected>Select your section</option>    
@@ -62,16 +66,53 @@
 </template>
 <script>
 import input from '../Forms/input.vue'
+import {mapActions} from 'vuex'
+import { eventBus } from '../../store/modules/eventBus';
+
 export default {
+  data: function() {
+    return {
+      index: 0,
+      selected:{
+        university: 0,
+        faculty: 0,
+        deparment: 0,
+        section: 0,
+        term: 0,
+        gender: 0,
+        arabic_name: "",
+        card_id: ""
+      },
+      universities: []
+    }
+  },
   methods: {
+    ...mapActions([
+      'updateFirstTimeContent',
+      'changeSelected'
+    ]),
+    change() {
+      this.$store.dispatch('changeSelected', this.selected);
+    },
     save() {
       // Login Http Logic
-      this.$router.push('/profile/edit');
+      // this.$router.push('/profile/edit');
     }
+  },
+  computed: {
+    // faculties: function() {
+    //   return this.universities.data[;
+    // }
   },
   components: {
     'input-form' : input
-  }
+  },
+  created() {
+    this.$store.dispatch('updateFirstTimeContent');
+  },
+  mounted() {
+      this.universities = this.$store.state.responseData;
+  },
 }
 </script>
 <style scoped>

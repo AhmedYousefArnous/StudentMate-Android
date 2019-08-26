@@ -20,7 +20,7 @@
 export default {
     props: {
         id: {
-            type: String,
+            type: Number,
             required: true
         },
         title: {
@@ -41,7 +41,8 @@ export default {
         link: function() {
             return "Materials/" +  this.id;
         }
-    }
+    },
+
 }
 </script>
 <style lang="scss" scoped>
