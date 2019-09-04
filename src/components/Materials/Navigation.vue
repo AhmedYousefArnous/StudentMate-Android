@@ -4,13 +4,25 @@
     enter-active-class="animated fadeInUp"
     >
       <div class="navigation-icons">
-            <i 
-                class="fa fa-video-camera"
-                @click="$router.push(link + '/Lectures')"
-            ></i>
-            <i class="fa fa-file" @click="$router.push(link + '/Parts')"></i>
-            <i class="fa fa-flask" @click="$router.push(link + '/Exams')"></i>
-            <i class="fa fa-plus" @click="$router.push(link + '/Recommendations')"></i>
+            <span class="lectures">
+                <i 
+                    class="fa fa-video-camera"
+                    @click="$router.push(link + '/Lectures')"
+                ></i>
+                <span> Lectures </span>
+            </span>
+            <span class="parts">
+                <i class="fa fa-file" @click="$router.push(link + '/Parts')"></i>
+                <span> Parts </span>
+            </span>
+            <span class="exams">
+                <i class="fa fa-flask" @click="$router.push(link + '/Exams')"></i>                
+                <span> Exams </span>
+            </span>
+            <span class="recommendations">
+                <i class="fa fa-plus" @click="$router.push(link + '/Recommendations')"></i>            
+                <span> Recommendations </span>
+            </span>
      </div>
   </transition>
 </template>
@@ -35,39 +47,52 @@ export default {
         position: fixed;
         bottom: 0;
         left: 0;
-        font-size: 28px;
-        padding: 10px 15px;
+        padding: 5px 15px;
         width: 100vw;
         z-index: 4;
+        height: 40px;
         background-color: $color-primary;
         color: white;
 
         display: grid;
-        grid-template-columns: repeat(4 , 1fr);
-        grid-template-rows: 30px;
+        grid-template-columns: repeat(9 , 1fr);
+        grid-template-rows: 0px;
         justify-items: center;
-
-        .fa-video-camera {
-            grid-column: 1 / 2;
-            position: relative;
+        span {
+            text-align: center;
+            span {
+                font-size: 16px;
+                @media (max-width: 450px ) {
+                    font-size: 12px;
+                        
+                }
+                @media (max-width: 350px ) {
+                    display: none;
+                        
+                }
+            }
+        }
+        span.lectures {
+            grid-column: 1 / 3;
         }
 
-        .fa-file {
-            grid-column: 2 / 3;
+        .parts {
+            grid-column: 3 / 5;
         }
 
-        .fa-flask {
-            grid-column: 3 / 4;
+        .exams {
+            grid-column: 5 / 7;
         }
         
-        .fa-plus {
-            grid-column: 4 / 5;
+        .recommendations {
+            grid-column: 7 / 10;
         }
         .fa {
+            font-size: 16px;
             &.active {
                     background-color: #FFF;
                     color: #d100d8;
-                    padding: 12px 12px 37px 12px;
+                    // padding: 12px 12px 37px 12px;
                     // position: relative;
                     bottom: 30px;
                     border: 1.3px solid #d100d8;

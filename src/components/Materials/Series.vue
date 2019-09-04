@@ -9,21 +9,6 @@
         <div class="col-12 pb-5">
             <series-badge
                 class="mx-3 my-3"
-                label="Category"
-                content="Lorem ipsum dolor sit"
-                ></series-badge>
-            <series-badge
-                class="mx-3 my-3"
-                label="Department"
-                content="Lorem ipsum dolor sit"
-                ></series-badge>
-            <series-badge
-                class="mx-3 my-3"
-                label="Level"
-                content="Lorem ipsum dolor sit"
-                ></series-badge>
-            <series-badge
-                class="mx-3 my-3"
                 label="Time"
                 content="Sat - 10:00"
                 ></series-badge>

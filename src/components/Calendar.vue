@@ -22,8 +22,8 @@
             </h3>
             <calendar-badge
                 class="mx-3"
-                v-for="(lecture, i) in dailyAttendance.lectures"
-                :key="i * 2"
+                v-for="(lecture, k) in dailyAttendance.lectures"
+                :key="k + 100"
                 :label="lecture.title"
                 :content="lecture.description"
                 >
@@ -33,9 +33,9 @@
             </calendar-badge>
             <calendar-badge
                 class="mx-3"
-                v-for="(section, i) in dailyAttendance.sections"
+                v-for="(section, k) in dailyAttendance.sections"
                 color="#fb8eff"
-                :key="i * 2"
+                :key="k * + 200"
                 :label="section.title"
                 :content="section.description"
                 >

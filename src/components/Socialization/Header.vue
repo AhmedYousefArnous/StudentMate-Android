@@ -8,13 +8,13 @@
             <div>
                 <router-link
                     tag="i"
-                    class="fa fa-angle-double-left mr-2" 
+                    class="fa fa-angle-left mr-2" 
                     :to="link"
                     ></router-link>
                 <slot name="title"></slot>
 
             </div>
-            <i class="fa fa-bars mt-2"></i>
+            <i class="fa fa-bars mt-1"></i>
         </div>
   </transition>
 </template>
@@ -40,6 +40,9 @@ export default {
         top: 0;
         left: 0;
         width: 100vw;
+        .fa-angle-left {
+            font-size: 28px;
+        }
         span {
             font-size: 20px;
         }

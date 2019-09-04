@@ -4,12 +4,12 @@
         <div class="row justify-content-between px-3">
             <router-link
                 tag="i"
-                class="fa fa-angle-double-left" 
+                class="fa fa-angle-left fa-fw" 
                 to="/main"
                 ></router-link>
             <router-link
                 tag="i"
-                class="fa fa-pencil-square" 
+                class="fa fa-pencil-square fa-fw" 
                 to="/profile/edit"
                 ></router-link>
         </div>
@@ -159,9 +159,9 @@ export default {
         font-size: 14px
     }
 
-    .fa-angle-double-left,
+    .fa-angle-left,
     .fa-pencil-square {
-        font-size: 26px;
+        font-size: 30px;
         position: relative;
         color: white;
         z-index: 2;
