@@ -13,7 +13,7 @@
             <app-card 
                 link="/materials"
                 icon="/static/assets/materialsIcon.png"
-                title="Study Materials"
+                title="Materials"
                 text="Lorem ipsum dolor sit amet consectetur adipiscing elit, urna consequat felis vehicula class ultricies mollis dictumst"
                 class="col-10 col-md-5 offset-1"></app-card>
                 
@@ -27,7 +27,7 @@
             <app-card 
                 link="/Socialization"
                 icon="/static/assets/ConnectionsIcon.png"
-                title="Socialization"
+                title="Network"
                 text="Lorem ipsum dolor sit amet consectetur adipiscing elit, urna consequat felis vehicula class ultricies mollis dictumst"
                 class="col-10 col-md-5 offset-1"></app-card>
             <app-card 
