@@ -19,7 +19,7 @@
                 <div class="row justify-content-center pt-2 text-center">
                     <img src="/static/profile.png" class="img-circle avatar"/>
                     <h1 class="col-12 h2 my-3">
-                        John Doe
+                        {{ $store.state.student.name }}
                     </h1> 
                     <div class="col-12">
                         <button class="btn btn-purple btn-sm mr-2 message-btn" type="button">
@@ -29,9 +29,6 @@
                             <i class="fa fa-user-plus"></i> Connect
                         </button>
                     </div>
-                    <h2 class="h4 mt-4">
-                        Joined <strong> Sep 23, 2019 </strong>
-                    </h2> 
                 </div>
             </div>
         </header> 
@@ -48,14 +45,30 @@
                 :label="property.title"
                 :content="property.content"
                 :visible="property.visible"
-                @clicked="makeVisiblable(i)"
+                @clicked="makeVisiblable(i, property.id)"
                 ></profile-badge>
+            <profile-badge
+                class="col-11"  
+                label="Nationality"
+                :key="201"
+                :content=" $store.state.student.nationality == 1 ? 'Egyptain' : 'Soudain'"
+                ></profile-badge>
+            <profile-badge
+                class="col-11"  
+                label="Joined"
+                :key="200"
+                :content="new Date($store.state.student.joined.date)"
+                ></profile-badge>
+
         </transition-group>
     </div>
 </template>
 <script>
 import header from './Partials/header.vue';
 import badge from './Partials/badge.vue';
+import {mapActions, mapGetters} from 'vuex'
+import { eventBus } from '../store/modules/eventBus';
+
 export default {
     components: {
         'app-header': header,
@@ -65,90 +78,88 @@ export default {
         return {
             properties: [
                 {
-                    id: "0",
+                    id: 1,
                     title: "Arabic Name",
-                    content: "أبجد هوز",
-                    visible: "true"
-                },
-                {
-                    id: "1",
-                    title: "University",
-                    content: "Mansoura University",
-                    visible: "true"
+                    content: this.$store.state.student.name_arabic,
+                    visible: this.$store.state.student.options.name_arabic,
                 },
                 {
                     id: "2",
-                    title: "Faculty",
-                    content: "Faculty Of Engineering",
-                    visible: "true"                    
+                    title: "University",
+                    content: this.$store.state.student.university.name,
+                    visible: this.$store.state.student.options.university,
                 },
                 {
                     id: "3",
-                    title: "Department",
-                    content: "omputer Science &amp; Systems Engineering",
-                    visible: "true"                    
+                    title: "Faculty",
+                    content: this.$store.state.student.faculty.name,
+                    visible: this.$store.state.student.options.faculty,
+             
                 },
                 {
                     id: "4",
-                    title: "Level",
-                    content: "Level 300",
-                    visible: "true"
-                    
+                    title: "Department",
+                    content: this.$store.state.student.department.name,
+                    visible: this.$store.state.student.options.department,
+                                       
                 },
                 {
                     id: "5",
-                    title: "Section",
-                    content: "One",
-                    visible: "false"
-                    
+                    title: "Level",
+                    content: this.$store.state.student.level.name,
+                    visible: this.$store.state.student.options.level,       
                 },
                 {
                     id: "6",
-                    title: "Term No.",
-                    content: "First",
-                    visible: "false"
-                    
+                    title: "Section",
+                    content: this.$store.state.student.section,
+                    visible: this.$store.state.student.options.section,
                 },
                 {
                     id: "7",
-                    title: "Card ID",
-                    content: "11114569",
-                    visible: "false"
+                    title: "Term No.",
+                    content: this.$store.state.student.term,
+                    visible: this.$store.state.student.options.term_no,
                 },
                 {
                     id: "8",
-                    title: "Gender",
-                    content: "Male",
-                    visible: "true"
-                    
+                    title: "Card ID",
+                    content: this.$store.state.student.card_id,
+                    visible: this.$store.state.student.options.card_id,
+             
                 },
-                // {
-                //     id: "9",
-                //     title: "Nationality",
-                //     content: "Egyptian",
-                //     visible: "true"
-                // },
+                {
+                    id: "9",
+                    title: "Gender",
+                    content: this.$store.state.student.gender,
+                    visible: this.$store.state.student.options.gender,
+                },
                 {
                     id: "10",
                     title: "Email",
-                    content: "JohnDoe@gmail.com",
-                    visible: "false"                    
+                    content: this.$store.state.student.email,
+                    visible: this.$store.state.student.options.email,
+                     
                 },
                 {
                     id: "11",
                     title: "Phone Number",
-                    content: "+2-321569874",
-                    visible: "false"                    
+                    content: this.$store.state.student.phone,
+                    visible: this.$store.state.student.options.phone_number,
                 },
                 
             ]
         }
     },
     methods: {
-        makeVisiblable(i) {
-            this.properties[i].visible = this.properties[i].visible == "true" ? "false" : "true";
+        ...mapActions([
+            'updateStudentInfoOptions'
+        ]),
+        makeVisiblable(index, id) {
+            this.$store.dispatch('updateStudentInfoOptions', id);
+            this.properties[index].visible = !this.properties[index].visible;
         }
-    }
+    },
 }
 </script>
 <style scoped>
@@ -169,7 +180,7 @@ export default {
     }
     .card {
         border: none;
-        height: 280px;
+        height: 240px;
         border-radius: 0 0 50% 50%;
         transform: scale(1.25);
         overflow: hidden;

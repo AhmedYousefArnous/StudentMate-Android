@@ -1,5 +1,4 @@
 import *  as globalState from './state'
-import { resolve, reject } from 'q';
 
 
 export let changeSelected = ({commit}, payload) => {

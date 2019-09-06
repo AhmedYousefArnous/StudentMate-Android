@@ -45,11 +45,30 @@
 <script>
 import header from './Partials/header.vue'
 import card from './Partials/card.vue'
+import {mapActions, mapGetters} from 'vuex'
+
 export default {
     components: {
         'app-header': header,
         'app-card': card
-    }
+    },
+     methods: {
+        ...mapActions([
+            'getStudentInfo'
+        ]),
+        // ...mapGetters([
+        //     'host'
+        // ]),
+    },
+    beforeCreate() {
+        // Login Http Logic
+        this.$store.dispatch('getStudentInfo');
+    },
+    // computed: {
+    //     Host: function() {
+    //         return this.$store.getters.host;
+    //     }
+    // }
 }
 </script>
 <style scoped lang="scss">

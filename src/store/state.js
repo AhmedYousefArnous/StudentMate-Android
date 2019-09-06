@@ -28,15 +28,15 @@ export let httpSettings = {
     data: {}
 };
 
-export let selected = {
-    university: 0,
-    faculty: 0,
-    deparment: 0,
-    section: 0,
-    term: 0,
-    gender: 0,
-    arabic_name: "",
-    card_id: ""
-};
+// export let selected = {
+//     university: 0,
+//     faculty: 0,
+//     deparment: 0,
+//     section: 0,
+//     term: 0,
+//     gender: 0,
+//     arabic_name: "",
+//     card_id: ""
+// };
 
-export let materials = [];
+// export let materials = [];

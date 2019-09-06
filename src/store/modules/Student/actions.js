@@ -56,18 +56,51 @@ export const register = ({commit} , payload) => {
       );
 }
 
-export const updateFirstTimeContent = ({commit}) => {
-  globalState.httpSettings.url = `${globalState.host}/api/first/content`;
-  globalState.httpSettings.method = 'GET';
+// export const updateFirstTimeContent = ({commit}) => {
+//   globalState.httpSettings.url = `${globalState.host}/api/first/content`;
+//   globalState.httpSettings.method = 'GET';
   
     
-  $.ajax(globalState.httpSettings)
-    .done(function (response) {
-      commit('setResponseData', response);
-    }).
-    catch(
-      function (response) {
-        commit('setResponseData', response);
-      }
-    );
-}
+//   $.ajax(globalState.httpSettings)
+//     .done(function (response) {
+//       commit('setResponseData', response);
+//     }).
+//     catch(
+//       function (response) {
+//         commit('setResponseData', response);
+//       }
+//     );
+// }
+
+export let getStudentInfo = ({commit}) => {
+      globalState.httpSettings.url = `${globalState.host}/api/student`;
+      globalState.httpSettings.method = 'GET';
+  
+      $.ajax(globalState.httpSettings)
+      .done(function (response) {
+          commit('setStudent', response);
+      }).
+      catch(
+          function (response) {
+          commit('setLoginDataError', response);
+          }
+      );
+};
+
+export let updateStudentInfoOptions = ({commit}, payload) => {
+   commit('updateStudentInfoOptionsMutation', payload);
+  // Adding the http logic
+  
+  // globalState.httpSettings.url = `${globalState.host}/api/student/options`;
+  // globalState.httpSettings.method = 'POST';
+
+  // $.ajax(globalState.httpSettings)
+  // .done(function (response) {
+  //     commit('setStudent', response);
+  // }).
+  // catch(
+  //     function (response) {
+  //     commit('setLoginDataError', response);
+  //     }
+  // );
+};
