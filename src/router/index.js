@@ -7,6 +7,7 @@ import Socialization from '../components/Socialization'
 import Calendar from '../components/Calendar'
 
 import Profile from '../components/Profile'
+import PublicProfile from '../components/PublicProfile'
 import EditProfile from '../components/Profile/EditProfile'
 import EditFirstTime from '../components/Profile/EditFirstTime'
 
@@ -35,6 +36,7 @@ export default new Router({
     { path: '/Settings', name: 'Settings', component: Settings },
     { path: '/Calendar', name: 'Calendar', component: Calendar },
     { path: '/profile', name: 'PrivateProfile', component: Profile },
+    { path: '/profile/:id', name: 'PublicProfile', component: PublicProfile },
     { path: '/profile/edit', name: 'EditProfile', component: EditProfile },
     { path: '/profile/edit/first', name: 'EditFirstTime', component: EditFirstTime },
     

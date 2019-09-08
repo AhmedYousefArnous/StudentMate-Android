@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="visitedProfileId !== null">
         <!-- <app-header background="bg-transparent"></app-header> -->
         <div class="row justify-content-between px-3">
             <router-link
@@ -18,23 +18,21 @@
             <div class="card-img-overlay">
                 <div class="row justify-content-center pt-2 text-center">
                     <img src="/static/profile.png" class="img-circle avatar"/>
-                    <h1 class="col-12 h2 my-3" >
-                        {{ $store.state.student.name }}
+                    <h1 class="col-12 h2 my-3" v-if="visitedProfile !== null">
+                        {{ visitedProfile.name_arabic  }}
                     </h1>
                     <div class="col-12">
-                        <router-link
-                            tag="a"
-                            class="btn btn-purple btn-sm" 
-                            :to="'/profile/' + $store.state.student.id"
-                            >
-                            <i class="fa fa-eye"></i> Visitor View                        
-
-                        </router-link>
+                        <button class="btn btn-purple btn-sm mr-2 message-btn" type="button">
+                            <i class="fa fa-send"></i> Message
+                        </button>
+                        <button class="btn btn-purple btn-sm" type="button">
+                            <i class="fa fa-user-plus"></i> Connect
+                        </button>
                     </div>
                 </div>
             </div>
         </header> 
-        <transition-group 
+        <!-- <transition-group 
             class="row justify-content-center py-5"
             appear
             enter-active-class="animated fadeIn"
@@ -62,7 +60,7 @@
                 :content="new Date($store.state.student.joined.date)"
                 ></profile-badge>
 
-        </transition-group>
+        </transition-group> -->
     </div>
 </template>
 <script>
@@ -82,87 +80,92 @@ export default {
                 {
                     id: 1,
                     title: "Arabic Name",
-                    content: this.$store.state.student.name_arabic,
-                    visible: this.$store.state.student.options.name_arabic,
+                    content: this.visitedProfile ? this.visitedProfile.name_arabic : null,
                 },
                 {
                     id: "2",
                     title: "University",
-                    content: this.$store.state.student.university.name,
-                    visible: this.$store.state.student.options.university,
+                    content: this.visitedProfile ? this.visitedProfile.university.name  : null,
                 },
                 {
                     id: "3",
                     title: "Faculty",
-                    content: this.$store.state.student.faculty.name,
-                    visible: this.$store.state.student.options.faculty,
+                    content: this.visitedProfile ? this.visitedProfile.faculty.name  : null,
              
                 },
                 {
                     id: "4",
                     title: "Department",
-                    content: this.$store.state.student.department.name,
-                    visible: this.$store.state.student.options.department,
+                    content: this.visitedProfile ? this.visitedProfile.department.name  : null,
                                        
                 },
                 {
                     id: "5",
                     title: "Level",
-                    content: this.$store.state.student.level.name,
-                    visible: this.$store.state.student.options.level,       
+                    content: this.visitedProfile ? this.visitedProfile.level.name  : null,
                 },
                 {
                     id: "6",
                     title: "Section",
-                    content: this.$store.state.student.section,
-                    visible: this.$store.state.student.options.section,
+                    content: this.visitedProfile ? this.visitedProfile.section  : null,
                 },
                 {
                     id: "7",
                     title: "Term No.",
-                    content: this.$store.state.student.term,
-                    visible: this.$store.state.student.options.term_no,
-                },
-                {
-                    id: "8",
-                    title: "Card ID",
-                    content: this.$store.state.student.card_id,
-                    visible: this.$store.state.student.options.card_id,
-             
+                    content: this.visitedProfile ? this.visitedProfile.term : null,
                 },
                 {
                     id: "9",
                     title: "Gender",
-                    content: this.$store.state.student.gender,
-                    visible: this.$store.state.student.options.gender,
+                    content: this.visitedProfile ? this.visitedProfile.gender  : null,
                 },
                 {
                     id: "10",
                     title: "Email",
-                    content: this.$store.state.student.email,
-                    visible: this.$store.state.student.options.email,
-                     
+                    content: this.visitedProfile ? this.visitedProfile.email  : null,                     
                 },
                 {
                     id: "11",
                     title: "Phone Number",
-                    content: this.$store.state.student.phone,
-                    visible: this.$store.state.student.options.phone_number,
+                    content: this.visitedProfile ? this.visitedProfile.phone : null,
                 },
                 
             ],
+            visitedProfileId: null, 
+            visitedProfile: null
         }
     },
     methods: {
         ...mapActions([
-            'updateStudentInfoOptions',
             'getVisitedStudentInfo'
         ]),
-        makeVisiblable(index, id) {
-            this.$store.dispatch('updateStudentInfoOptions', id);
-            this.properties[index].visible = !this.properties[index].visible;
-        }
     },
+    beforeMount() {
+        this.visitedProfileId = this.$route.params.id;
+        let vm = this;
+        this.$store.dispatch('getVisitedStudentInfo', vm.visitedProfileId)
+            .then(
+                () =>{
+                    console.log(vm.$store.state.responseData.data);                     
+                    this.visitedProfile = vm.$store.getters.data;
+                }
+            );
+    },
+    // computed: {
+    //     visitedProfile: function () {
+    //         return this.$store.getters.data;
+    //     }
+    // },
+    // watch: {
+    //     '$route'(to, from) {
+    //         this.visitedProfileId = this.$route.params.id
+    //         let vm = this;
+    //         this.$store.dispatch('getVisitedStudentInfo', vm.visitedProfileId)
+    //             .then(
+    //                 () =>{ vm.visitedProfile =  vm.$store.state.responseData.data}
+    //             );            
+    //     },
+    // },
 }
 </script>
 <style scoped>
@@ -211,4 +214,3 @@ export default {
         background-color: #7e238e
     }
 </style>
-

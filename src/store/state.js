@@ -7,7 +7,7 @@ export const token = {
     "refresh_token": null
 };
 
-export const responseData = {
+export let responseData = {
     success: null,
     message: null,
     data: {},

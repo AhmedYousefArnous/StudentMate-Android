@@ -104,3 +104,23 @@ export let updateStudentInfoOptions = ({commit}, payload) => {
   //     }
   // );
 };
+
+
+
+export let getVisitedStudentInfo = ({commit}, payload) => {
+  return new Promise((resolve, reject) => {
+    globalState.httpSettings.url = `${globalState.host}/api/student/${payload}`;
+    globalState.httpSettings.method = 'GET';
+
+    $.ajax(globalState.httpSettings)
+    .done(function (response) {
+        commit('setVisitedStudent', response);
+    }).
+    catch(
+        function (response) {
+          commit('setLoginDataError', response);
+        }
+    );
+    resolve();
+  });
+};
