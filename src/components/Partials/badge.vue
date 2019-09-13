@@ -32,7 +32,7 @@ export default {
         },
         color: {
             type: String,
-            default: "#d100d8" 
+            default: "#7F449B" 
         },
         visible: {
             type: Boolean,

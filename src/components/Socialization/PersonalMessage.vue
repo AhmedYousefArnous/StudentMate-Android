@@ -20,7 +20,7 @@ export default {
 <style lang="scss" scoped>
     @import "../../assets/scss/Abstractions/variables";
         .msg {
-            background-color: $color-primary-dark;
+            background-color: $color-primary;
             color: #f1f1f1;
             padding: 5px 15px;
             border-radius: 15px;

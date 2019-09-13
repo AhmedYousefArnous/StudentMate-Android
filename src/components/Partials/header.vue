@@ -4,7 +4,7 @@
         >
         <i class="fa fa-bars mt-2"></i>
         <!-- <i class="fa fa-sign-out"></i> -->
-        <img src="/static/img/logo-invert.png" alt=""  class="col-9 col-md-4 col-lg-3">
+        <img src="static/img/logo-invert.png" alt=""  class="col-9 col-md-4 col-lg-3">
         <router-link
             tag="i"
             class="fa fa-gear mt-2"
@@ -40,11 +40,6 @@ export default {
         left: 15px;
         width: 100vw;
         
-    }
-    div {
-        // left: 15px;
-        // width: 100%
-    
     }
     .fa {
         font-size: 28px;

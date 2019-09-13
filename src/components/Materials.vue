@@ -14,12 +14,13 @@
         >
         <div class="content-container row align-items-center align-content-sm-around ">
             <picture-card
-                v-for="subject in Materials"
-                :key="subject.id"
-                :title="subject.name"  
-                :icon="Host + '/' + subject.banner"
+                v-for="(subject, i) in Materials"
+                :key="i"
+                :title="subject.title"  
+                :icon="subject.icon"
                 :id="subject.id"
-                notificationNumber="3"
+                :notificationNumber="subject.notificationNumber"
+                
                 class="mb-3"
                 ></picture-card>
         </div>
@@ -29,43 +30,34 @@
 <script>
 import Header from './Socialization/Header.vue';
 import PictureCard from './Partials/PictureCard.vue';
-import {mapActions, mapGetters} from 'vuex'
 
 export default {
-    data: function() {
-        return {
-            shouldRender: false,
-            Materials: []
-        }
-    },
     components: {
         appHeader: Header,
         PictureCard
     },
-    methods: {
-        ...mapActions([
-            'getMaterials'
-        ]),
-        ...mapGetters([
-            'materials',
-            'host'
-        ]),
-    },
-    mounted() {
-        // Login Http Logic
-        this.$store.dispatch('getMaterials');
-        // .then(() => {
-        setTimeout(
-            () => {
-                this.Materials = this.$store.getters.materials;
-                this.shouldRender = true;
-            }, 1500
-        );
-        // });
-    },
-    computed: {
-        Host: function() {
-            return this.$store.getters.host;
+    data: function () {
+        return {
+            Materials: [
+                {
+                    id: 1,
+                    notificationNumber: "10",                    
+                    title: "Computer Security",
+                    icon: "./static/Computer Security.jpg"
+                },
+                {
+                    id: 2,
+                    notificationNumber: "5",                    
+                    title: "Networks",
+                    icon: "./static/Networks.jpg"
+                },
+                {
+                    id: 3,                    
+                    notificationNumber: "1",                    
+                    title: "Algorthims",
+                    icon: "./static/Algorthims.jpg"
+                }
+            ]
         }
     }
 }

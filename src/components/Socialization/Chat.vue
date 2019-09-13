@@ -85,7 +85,7 @@ export default {
             lastMsg: 'Lorem ipsum dolor sit amet.',
             msgTime: "18:30",
             name: 'john Doe',
-            picture: '/static/profile.png'
+            picture: 'static/profile.png'
           }
         ],
         Groups: [
@@ -93,7 +93,7 @@ export default {
             lastMsg: 'Lorem ipsum dolor sit amet.',
             msgTime: "18:30",
             name: 'CSED 2021 Group',
-            picture: '/static/group.jpg'
+            picture: 'static/group.jpg'
           }
         ],
         Channels: [
@@ -101,7 +101,7 @@ export default {
             lastMsg: 'Lorem ipsum dolor sit amet.',
             msgTime: "18:30",
             name: 'CSED Channel',
-            picture: '/static/channel.jpg'
+            picture: 'static/channel.jpg'
           }
         ]
       }

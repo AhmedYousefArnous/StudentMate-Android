@@ -1,4 +1,5 @@
 export const host = "http://localhost:8000";
+// export const host = "http://18.207.222.218:89";
 
 export const token = {
     "token_type": "Bearer",
@@ -17,11 +18,13 @@ export let responseData = {
 
 export let httpSettings = {
     async: true,
-    crossDomain: true,
+    // crossDomain: true,
+    // crossOrigin: true,
+    // timeout: 10000,      
     headers: {
-      "content-type": "application/x-www-form-urlencoded",
-      accept: "application/json",
-      authorization: `${token.token_type} ${token.access_token}`
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+      Authorization: `${token.token_type} ${token.access_token}`
     },
     url: '',
     method: '',

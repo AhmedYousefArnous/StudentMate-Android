@@ -14,10 +14,10 @@
                 ></router-link>
         </div>
         <header class="row card card-inverse">
-            <img src="/static/profile.png" class="card-img"/>
+            <img src="static/profile.png" class="card-img"/>
             <div class="card-img-overlay">
                 <div class="row justify-content-center pt-2 text-center">
-                    <img src="/static/profile.png" class="img-circle avatar"/>
+                    <img src="static/profile.png" class="img-circle avatar"/>
                     <h1 class="col-12 h2 my-3" v-if="visitedProfile !== null">
                         {{ visitedProfile.name_arabic  }}
                     </h1>

@@ -135,10 +135,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .socialization-badge {
+    @import "../assets/scss/Abstractions/variables";
+
+   .socialization-badge {
         box-shadow: 2px 3px 16px -9px #333;
         border-radius: 10px;
         color: #8c8c8c;
+        
         .fa-users,
         .fa-user-times,
         .fa-user-plus,
@@ -146,12 +149,13 @@ export default {
         .fa-tv {
             font-size: 42px;
             padding: 15px;
-            color: #d100d8;
+            color: $color-primary;
 
         }
     }
     .notification-badge {
         padding: 10px;
+        background-color: $color-primary;
         .number {
             font-size: 12px;
         }

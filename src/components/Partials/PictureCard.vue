@@ -46,11 +46,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+    @import "../../assets/scss/Abstractions/variables";
+
     .card {
         padding:0;
         border: none;
             .card-img-overlay {
-                background-color: #d100d836;
+                background-color: #7f449b4d;
                 color: #FFF;
             }
     }

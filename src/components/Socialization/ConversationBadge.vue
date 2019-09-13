@@ -35,7 +35,7 @@ export default {
         },
         picture: {
             type:String,
-            default: '/static/profile.png'
+            default: 'static/profile.png'
         }
     },
     methods: {

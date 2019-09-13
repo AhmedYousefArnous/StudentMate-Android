@@ -42,7 +42,8 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
+    @import "../../assets/scss/Abstractions/variables";
     img {
         max-width: 70% ;
         margin: 0 auto;
@@ -56,7 +57,7 @@ export default {
         border-radius: 25px;
         border: none;
         height: fit-content !important;
-        background-color: #d100d8;
+        background-color: $color-primary;
         color: white;
     }
     .card-text {

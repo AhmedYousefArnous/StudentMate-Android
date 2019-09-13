@@ -105,27 +105,27 @@ export default {
                 {
                     name: 'John Doe',
                     faculty: 'Faculty of Engineering',
-                    icon: '/static/profile.png'
+                    icon: 'static/profile.png'
                 },
                 {
                     name: 'John Doe 2',
                     faculty: 'Faculty of Engineering',
-                    icon: '/static/profile.png'
+                    icon: 'static/profile.png'
                 },
                 {
                     name: 'John Doe 3',
                     faculty: 'Faculty of Engineering',
-                    icon: '/static/profile.png'
+                    icon: 'static/profile.png'
                 },
                 {
                     name: 'John Doe 4',
                     faculty: 'Faculty of Engineering',
-                    icon: '/static/profile.png'
+                    icon: 'static/profile.png'
                 },
                 {
                     name: 'John Doe 5',
                     faculty: 'Faculty of Engineering',
-                    icon: '/static/profile.png'
+                    icon: 'static/profile.png'
                 }
                 
             ]

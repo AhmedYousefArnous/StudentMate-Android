@@ -34,7 +34,7 @@
             <calendar-badge
                 class="mx-3"
                 v-for="(section, k) in dailyAttendance.sections"
-                color="#fb8eff"
+                color="#7f449b9e"
                 :key="k * + 200"
                 :label="section.title"
                 :content="section.description"

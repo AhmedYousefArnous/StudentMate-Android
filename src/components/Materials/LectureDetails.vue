@@ -12,10 +12,11 @@
         appear
         enter-active-class="animated zoomIn"
         >
-        <div class="content-container row">
-            <video class="col-12" controls width="100%">
-                <source src="/static/DELL Mass Customization.mp4" type="video/mp4">
+        <div class="content-container">
+            <video  controls width="100%">
+                <source src="static/DELL Mass Customization.mp4" type="video/mp4">
             </video>
+            <div class="row">
                 <p class="col-12 py-4">
                     Lorem ipsum dolor sit amet consectetur adipiscing elit, urna consequat felis vehicula class ultricies mollis dictumst, aenean non a in donec nulla. Phasellus ante pellentesque erat cum risus consequat imperdiet aliquam, integer placerat et turpis mi eros nec lobortis taciti, vehicula nisl litora tellus ligula porttitor metus. 
                 </p>
@@ -54,7 +55,7 @@
                         :content="section.content"
                         ></lecture-badge>
                 </div>
-
+            </div>
         </div>
       </transition>
   </div>
@@ -117,6 +118,6 @@ export default {
 <style lang="scss" scoped>
     video {
         padding: 0;
-        margin-top: -25px;
+        margin-top: -15p;
     }
 </style>

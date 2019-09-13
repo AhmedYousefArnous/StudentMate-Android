@@ -24,6 +24,7 @@ export const login = ({commit} , payload) => {
       }).
       catch(
         function (response) {
+          console.log(response);
           commit('setLoginDataError', response);
         }
       );
@@ -82,7 +83,8 @@ export let getStudentInfo = ({commit}) => {
       }).
       catch(
           function (response) {
-          commit('setLoginDataError', response);
+            console.log(response);            
+            commit('setLoginDataError', response);
           }
       );
 };

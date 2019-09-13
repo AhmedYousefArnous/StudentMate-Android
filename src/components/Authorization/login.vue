@@ -18,6 +18,7 @@
       <button 
         class="btn btn-purple btn-circle mt-2"
         @click.prevent="login"
+        :disable="canSend"
         >
         <i class="fa fa-sign-in"></i> Login</button>
     </div>
@@ -33,7 +34,8 @@ export default {
         userCredentials: {
             username: '',
             password: ''
-        }
+        },
+        canSend: true
     }
   },
   methods: {
@@ -42,6 +44,7 @@ export default {
     ]),
     login() {
       // Login Http Logic
+      this.canSend = false,
       this.$store.dispatch('login', this.userCredentials);
     }
   },
