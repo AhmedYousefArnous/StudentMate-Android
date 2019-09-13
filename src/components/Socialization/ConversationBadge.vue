@@ -12,10 +12,10 @@
         <img :src="picture" alt="" class="avatar avatar-conversation">
         </div>
         <div class="col py-2 pl-4">
-            <h2 class="h4">{{ msgContainer.name }} 
+            <h2 class="h4">{{ name }} 
                 <span class="float-right h6"> 18:30 </span>
             </h2>
-            <h3 class="h5"> {{ 'Lorem ipsum dolor sit amet.' | skip}} </h3>
+            <h3 class="h5"> {{ lastMsg | skip}} </h3>
         </div>
     </div>
   </transition>
@@ -23,24 +23,20 @@
 <script>
 export default {
     props: {
-        // lastMsg: {
-        //     type:String,
-        //     required: true
-        // },
+        lastMsg: {
+            type:String,
+            default: 'Lorem ipsum dolor sit amet.'
+        },
         // msgTime: {
         //     type:String,
         //     required: true   
         // },
-        // name: {
-        //     type:String,
-        //     required: true
-        // },
+        name: {
+            type:String,
+            required: true
+        },
         picture: {
             type:String,
-        },
-        msgContainer: {
-            type: Object,
-            required: true
         }
     },
     methods: {

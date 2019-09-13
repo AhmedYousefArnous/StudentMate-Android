@@ -23,7 +23,6 @@ export default {
     },
     methods: {
         search() {
-            console.log(this.word)
             this.$emit("search", this.word );
         }
     }

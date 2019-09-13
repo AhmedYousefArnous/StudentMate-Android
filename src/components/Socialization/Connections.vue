@@ -15,13 +15,13 @@
         </span>
     </app-header>
 
-    <search-box
-          :placeholder="currentConnectionPageSearch"
-          @search="search($event)"
+      <search-box
+          :placeholder="'Seach in your ' +  $route.params.type.toLowerCase() + ' ...'"
+          @search="searchText = $event"
           ></search-box>
+
     <transition-group 
         class="row justify-content-center"
-        v-if="currentConnectionPage === 'Blocked'"
         appear
         enter-class=""
         enter-active-class="animated flipInX"
@@ -29,62 +29,19 @@
         leave-active-class="animated flipOutX"
         >
         <connection-badge
-            color="#d8005a"
             class="col-11 col-md-5 mx-3" 
             iconClass="fa-close"
-            v-for="(connection, i)  in Connections"
-            :label="connection.name"
-            :content="connection.faculty"
+            v-for="(connection, i)  in filteredConnectionsContainers"
+            :label="getName(connection)"
+            :content="connection.sender.faculty.name"
             :key="i * 2"
             @clicked="remove(i)"
             >
-            <img  slot="icon" :src="connection.icon" class="avatar avatar-conversation" alt="">
+            <img  slot="icon" :src="picture" class="avatar avatar-conversation" alt="">
         </connection-badge>
+
     </transition-group>
    
-    <transition-group 
-        class="row justify-content-center"
-        v-if="currentConnectionPage === 'Friends'"
-        appear
-        enter-class=""
-        enter-active-class="animated flipInX"
-        leave-class=""
-        leave-active-class="animated flipOutX"
-        >
-        <connection-badge
-            :label="connection.name"
-            :content="connection.faculty"
-            class="col-11 col-md-5 mx-3" 
-            @clicked="remove(i)"
-            v-for="(connection, i)  in Connections"
-            :key="i * 2"
-            iconClass="fa-close"
-            >
-            <img  slot="icon" :src="connection.icon" class="avatar avatar-conversation" alt="">
-        </connection-badge>
-    </transition-group>
-    <transition-group 
-        class="row justify-content-center"
-        v-if="currentConnectionPage === 'Send' || currentConnectionPage === 'Recieved'"
-        appear
-        enter-class=""
-        enter-active-class="animated flipInX"
-        leave-class=""
-        leave-active-class="animated flipOutX"
-        >
-        <connection-badge
-            :label="connection.name"
-            :content="connection.faculty"
-            color="#8d8d8d"
-            class="col-11 col-md-5 mx-3 connecting-connections"             
-            v-for="(connection, i)  in Connections"
-            :key="i * 2"
-            iconClass="fa-close"
-            @clicked="remove(i)"
-            >
-            <img  slot="icon" :src="connection.icon" class="avatar avatar-conversation" alt="">
-        </connection-badge>
-    </transition-group>
 
   </div>
 </template>
@@ -92,6 +49,8 @@
 import Header from './Header.vue';
 import badge from '../Partials/badge.vue';
 import SearchBox from './SearchBox.vue';
+import {mapGetters} from 'vuex'
+
 
 export default {
     components: {
@@ -101,51 +60,94 @@ export default {
     },
     data: function() {
         return {
-            Connections: [
-                {
-                    name: 'John Doe',
-                    faculty: 'Faculty of Engineering',
-                    icon: 'static/profile.png'
-                },
-                {
-                    name: 'John Doe 2',
-                    faculty: 'Faculty of Engineering',
-                    icon: 'static/profile.png'
-                },
-                {
-                    name: 'John Doe 3',
-                    faculty: 'Faculty of Engineering',
-                    icon: 'static/profile.png'
-                },
-                {
-                    name: 'John Doe 4',
-                    faculty: 'Faculty of Engineering',
-                    icon: 'static/profile.png'
-                },
-                {
-                    name: 'John Doe 5',
-                    faculty: 'Faculty of Engineering',
-                    icon: 'static/profile.png'
-                }
-                
-            ]
-        }
-    },
-    methods: {
-        remove(i)  {
-            // removing connection according the param type
-            this.Connections.splice(i, 1);
-        },
-        search($event)  {
+            searchText: '',
         }
     },
     computed: {
-        currentConnectionPage: function () {
+        currentConnectionPage() {
             return this.$route.params.type;
         },
-        currentConnectionPageSearch: function () {
-            return "Search in " + this.$route.params.type.toLowerCase() + " connections...";
+        picture: function() {
+                return this.$store.getters.host + 'users/default.png';
+        },   
+        connectionsContainers: function() {
+            switch(this.$route.params.type) {
+                case 'Friends': 
+                    return this.$store.state.student.connections.current;
+                    break;
+
+                case 'Blocked': 
+                    return this.$store.state.student.connections.blocked;
+                    break;
+
+                case 'Send': 
+                    return this.$store.state.student.connections.send;
+                    break;
+
+                case 'Recieved': 
+                    return this.$store.state.student.connections.reciever;
+                    break;
+            }
+         },
+
+        filteredConnectionsContainers() {
+            switch(this.$route.params.type) {
+                case 'Friends': 
+                case 'Blocked': 
+                    return this.connectionsContainers.filter((element) => {
+                        if( this.$store.state.student.id === element.sender.id) {
+                            return element.reciever.name.match(this.searchText);
+                        }
+                        if( this.$store.state.student.id === element.reciever.id) {
+                            return element.sender.name.match(this.searchText);
+                        }
+                    });
+                    break;
+
+                case 'Send': 
+                    return this.connectionsContainers.filter((element) => {
+                        return element.reciever.name.match(this.searchText);
+                    });
+                    break;
+
+                case 'Recieved': 
+                    return this.connectionsContainers.filter((element) => {
+                        return element.sender.name.match(this.searchText);
+                    });
+                    break;
+            }
+            
         }
+    },
+    methods: {
+        ...mapGetters([
+            'host',
+        ]),
+        getName(connection) {
+            switch(this.$route.params.type) {
+                case 'Friends': 
+                case 'Blocked': 
+                    if( this.$store.state.student.id === connection.sender.id) {
+                        return connection.reciever.name;
+                    }
+                    if( this.$store.state.student.id === connection.reciever.id) {
+                        return connection.sender.name;
+                    }
+                    break;
+
+                case 'Send': 
+                    return connection.reciever.name;
+                    break;
+
+                case 'Recieved': 
+                    return connection.sender.name;
+                    break;
+            }
+        },
+        remove(i)  {
+            // removing connection according the param type
+            // this.Connections.splice(i, 1);
+        },
     },
 }
 </script>

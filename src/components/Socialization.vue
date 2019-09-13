@@ -9,7 +9,7 @@
             </span>
         </app-header>
         <div class="row text-center ">
-            <h2 class="py-3 h1 col-12 font-weight-bold">
+            <h2 class="py-2 h1 col-12 font-weight-bold">
                     Chat
             </h2>
             <router-link 
@@ -51,7 +51,7 @@
             </router-link>
         </div>
         <div class="row text-center py-4">
-            <h2 class="py-4 h1 col-12 font-weight-bold">
+            <h2 class="py-3 h1 col-12 font-weight-bold">
                     Connections
             </h2>
             <router-link 
@@ -147,7 +147,7 @@ export default {
         .fa-user-plus,
         .fa-comments-o,
         .fa-tv {
-            font-size: 42px;
+            font-size: 32px;
             padding: 15px;
             color: $color-primary;
 

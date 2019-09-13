@@ -15,7 +15,7 @@
       </conversation-header>
 
       <search-box
-          :placeholder="'Seach in your ' +  $route.params.type + ' ...'"
+          :placeholder="'Seach in your ' +  $route.params.type.toLowerCase() + ' ...'"
           @search="searchText = $event"
           ></search-box>
 
@@ -24,7 +24,7 @@
             v-for="(msgContainer, i) in filteredMsgsContainers"
             :key="i"
             :picture="picture"
-            :msgContainer="msgContainer"
+            :name="msgContainer.name"
             @clicked="navigate(link + msgContainer.id )"
             ></conversation-badge>
       </div>
