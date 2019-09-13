@@ -15,50 +15,17 @@
       </conversation-header>
 
       <search-box
-          v-if="$route.params.type === 'Conversations'"
-          placeholder="Seach in your conversations..."
-          ></search-box>
-      <search-box
-          v-if="$route.params.type === 'Groups'"
-          placeholder="Seach in your Groups..."
-          ></search-box>
-      <search-box
-          v-if="$route.params.type === 'Channels'"
-          placeholder="Seach in your Channels..."
+          :placeholder="'Seach in your ' +  $route.params.type + ' ...'"
+          @search="searchText = $event"
           ></search-box>
 
       <div class="conversation-container">
         <conversation-badge
-            v-if="$route.params.type === 'Conversations'"
-            v-for="n in 6"
-            :key="n"
-            :lastMsg="conversations[0].lastMsg"
-            :msgTime="conversations[0].msgTime"
-            :name="conversations[0].name"
-            :picture="conversations[0].picture"
-            @clicked="navigate('/Chat/Conversations/1')"
-            ></conversation-badge>
-
-        <conversation-badge
-            v-if="$route.params.type === 'Groups'"
-            v-for="n in 6"
-            :key="n"
-            :lastMsg="Groups[0].lastMsg"
-            :msgTime="Groups[0].msgTime"
-            :name="Groups[0].name"
-            :picture="Groups[0].picture"
-            @clicked="navigate('/Chat/Groups/1')"
-            ></conversation-badge>
-
-        <conversation-badge
-            v-if="$route.params.type === 'Channels'"
-            v-for="n in 6"
-            :key="n"
-            :lastMsg="Channels[0].lastMsg"
-            :msgTime="Channels[0].msgTime"
-            :name="Channels[0].name"
-            :picture="Channels[0].picture"
-            @clicked="navigate('/Chat/Channels/1')"
+            v-for="(msgContainer, i) in filteredMsgsContainers"
+            :key="i"
+            :picture="picture"
+            :msgContainer="msgContainer"
+            @clicked="navigate(link + msgContainer.id )"
             ></conversation-badge>
       </div>
   </div>
@@ -67,6 +34,8 @@
 import ConversationBadge from './ConversationBadge.vue';
 import Header from './Header.vue';
 import SearchBox from './SearchBox.vue';
+import {mapGetters} from 'vuex'
+
 export default {
     components: {
      ConversationBadge,
@@ -74,38 +43,66 @@ export default {
      SearchBox
     },
     methods: {
+        ...mapGetters([
+            'host'
+        ]),
         navigate(url) {
             this.$router.push(url);
         }
     },
     data: function () {
       return {
-        conversations: [
-          {
-            lastMsg: 'Lorem ipsum dolor sit amet.',
-            msgTime: "18:30",
-            name: 'john Doe',
-            picture: 'static/profile.png'
-          }
-        ],
-        Groups: [
-          {
-            lastMsg: 'Lorem ipsum dolor sit amet.',
-            msgTime: "18:30",
-            name: 'CSED 2021 Group',
-            picture: 'static/group.jpg'
-          }
-        ],
-        Channels: [
-          {
-            lastMsg: 'Lorem ipsum dolor sit amet.',
-            msgTime: "18:30",
-            name: 'CSED Channel',
-            picture: 'static/channel.jpg'
-          }
-        ]
+        searchText: ''
       }
+    },
+    computed: {
+        picture: function() {
+            if(this.$route.params.type === 'Conversations') {
+                return this.$store.getters.host + 'users/default.png';
+            }
+
+            if(this.$route.params.type === 'Groups') {
+                return this.$store.getters.host + 'categories/March2019/XfoEQxuQNsfd2hwZZo56-medium.jpg';
+            }
+       
+            if(this.$route.params.type === 'Channels') {
+                return this.$store.getters.host + 'channels-notifications/March2019/JfYtBwTlSTAX83RTek5q.png';
+            }
+        },
+        link: function() {
+            if(this.$route.params.type === 'Conversations') {
+                return '/Chat/Conversations/';
+            }
+
+            if(this.$route.params.type === 'Groups') {
+                return '/Chat/Groups/';
+            }
+       
+            if(this.$route.params.type === 'Channels') {
+                return '/Chat/Channels/';
+            }
+        },    
+        MsgsContainers: function() {
+            if(this.$route.params.type === 'Conversations') {
+                return this.$store.state.student.Conversations;
+            }
+
+            if(this.$route.params.type === 'Groups') {
+                return this.$store.state.student.groups.subscribed;
+            }
+       
+            if(this.$route.params.type === 'Channels') {
+                return this.$store.state.student.Channels.subscribed;
+            }
+        },
+        filteredMsgsContainers() {
+            return this.MsgsContainers.filter((element) => {
+                return element.name.match(this.searchText);
+            });
+        }
+
     }
+    
 }
 </script>
 <style lang="scss" scoped>

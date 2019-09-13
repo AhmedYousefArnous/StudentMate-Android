@@ -35,7 +35,7 @@ export default {
 </script>
 <style scoped>
     .form-control{
-        box-shadow: 3px 3px 25px -10px #000;
+        box-shadow: 0px 3px 15px -7px #7f449bcc;
         outline-color: transparent;
         border: none;
         font-size: 16px;

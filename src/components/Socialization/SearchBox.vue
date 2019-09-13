@@ -4,8 +4,8 @@
     tag="div"
     enter-active-class="animated fadeIn"
     class="form-group d-flex justify-content-center pt-2">
-    <input class="form-control" v-model="word" :placeholder="placeholder" key="input">
-    <i class="fa fa-search" @click="search" key="icon"></i>
+    <input class="form-control" v-model="word" :placeholder="placeholder" key="input" @keyup="search">
+    <i class="fa fa-search"  key="icon"></i>
   </transition-group >
 </template>
 <script>
@@ -23,6 +23,7 @@ export default {
     },
     methods: {
         search() {
+            console.log(this.word)
             this.$emit("search", this.word );
         }
     }
@@ -43,7 +44,7 @@ export default {
         }
     }
     .form-control{
-        box-shadow: 1px 1px 23px -8px #6a6a6a;
+        box-shadow: 0px 3px 15px -7px #7f449bcc;
         outline-color: transparent;
         border: none;
         font-size: 16px;

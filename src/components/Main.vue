@@ -56,19 +56,11 @@ export default {
         ...mapActions([
             'getStudentInfo'
         ]),
-        // ...mapGetters([
-        //     'host'
-        // ]),
     },
     beforeCreate() {
         // Login Http Logic
         this.$store.dispatch('getStudentInfo');
     },
-    // computed: {
-    //     Host: function() {
-    //         return this.$store.getters.host;
-    //     }
-    // }
 }
 </script>
 <style scoped lang="scss">
