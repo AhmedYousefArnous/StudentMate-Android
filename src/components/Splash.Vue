@@ -8,7 +8,7 @@
                 <img 
                     class="col"
                     :class="{ 'mt-5 pt-5': !splashCheck, 'animated': splashCheck}"
-                    src="static/img/logo-invert.png"  
+                    src="static/logo-invert.png"  
                 />
                 <h2
                     v-if="!splashCheck"

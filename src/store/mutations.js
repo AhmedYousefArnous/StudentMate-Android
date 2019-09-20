@@ -4,6 +4,13 @@ export const setToken = ( state, payload )  => {
     state.token.expires_in = payload.expires_in;
 };
 
+export const setHttpSettingsToken = ( state )  => {
+    state.httpSettings.headers.Authorization 
+                      = `${state.token.token_type} ${state.token.access_token}`;
+
+};
+
+
 
 export const setLoginDataError = (state, payload) => {
     state.responseData.success = false;

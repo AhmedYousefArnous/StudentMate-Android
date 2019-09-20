@@ -13,8 +13,8 @@
         enter-active-class="animated zoomIn"
         >
         <div class="content-container">
-            <video  controls width="100%">
-                <source src="static/DELL Mass Customization.mp4" type="video/mp4">
+            <video  controls width="100%" autoplay>
+                <source src="static/DELL.mp4" type="video/mp4">
             </video>
             <div class="row">
                 <p class="col-12 py-4">

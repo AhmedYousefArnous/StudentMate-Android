@@ -7,20 +7,20 @@
             <img 
                 v-if="$route.params.type == 'Conversations'"
                 class="avatar avatar-header mx-1 mb-1"
-                src="/static/profile.png"/>
+                :src="picture"/>
             <span v-if="$route.params.type == 'Conversations'">John Doe</span>
 
             <img 
                 v-if="$route.params.type == 'Groups'"
                 class="avatar avatar-header mx-1 mb-1"
-                src="/static/group.jpg"/>
+                src="static/group.jpg"/>
             <span v-if="$route.params.type == 'Groups'">CSED Group</span>
 
             
             <img 
                 v-if="$route.params.type == 'Channels'"
                 class="avatar avatar-header mx-1 mb-1"
-                src="/static/channel.jpg"/>
+                src="static/channel.jpg"/>
             <span v-if="$route.params.type == 'Channels'">CSED 2021</span>
         </span>
     </conversation-header>    
@@ -53,7 +53,7 @@
                             slot="avatar"
                             class="avatar avatar-msg"
                             v-if="messages[index - 1].mine !== message.mine "
-                            src="/static/profile.png"/>
+                            src="static/profile.png"/>
                         <h3
                             slot="name"
                             class="h5"
@@ -74,6 +74,7 @@ import PersonalMessage from './PersonalMessage.vue';
 import RecievedMessage from './RecievedMessage.vue';
 import SendInput from '../Forms/SendInput.vue';
 import Header from './Header.vue';
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
     components: {
@@ -111,6 +112,12 @@ export default {
         }
     },
     methods: {
+        ...mapGetters([
+            'host'
+        ]),
+        ...mapActions([
+            'getStudentInfo'
+        ]),
         messageSendFunc($event) {
             if ($event == '') return;
             this.messages.push({
@@ -124,6 +131,27 @@ export default {
             }
 
         }
+    },
+    computed: {
+        picture: function() {
+            if(this.$route.params.type === 'Conversations') {
+                return this.$store.getters.host + 'users/default.png';
+            }
+
+            if(this.$route.params.type === 'Groups') {
+                return this.$store.getters.host + 'categories/March2019/XfoEQxuQNsfd2hwZZo56-medium.jpg';
+            }
+       
+            if(this.$route.params.type === 'Channels') {
+                return this.$store.getters.host + 'channels-notifications/March2019/JfYtBwTlSTAX83RTek5q.png';
+            }
+        },
+        conversation() {
+            return this.$store.state.conversation;
+        }
+    },
+    beforeCreate() {
+        this.$store.dispatch('getConversationInfo', this.$route.params.id);
     },
     created() {
         for (let index = 0; index < this.messages.length; index++) {

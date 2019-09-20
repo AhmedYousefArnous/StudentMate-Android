@@ -16,6 +16,7 @@ export const login = ({commit} , payload) => {
     $.ajax(globalState.httpSettings)
       .done(function (response) {
         commit('setToken', response);
+        commit('setHttpSettingsToken');
         if(!payload.register) {
           eventBus.navigate('/main');
         } else {
@@ -40,8 +41,7 @@ export const register = ({commit} , payload) => {
     "password":   `${payload.password}`,
     "c_password":   `${payload.c_password}`
   };
-
-    
+        
     $.ajax(globalState.httpSettings)
       .done(function (response) {
         mainVue.$store.dispatch('login', {
@@ -76,7 +76,7 @@ export const register = ({commit} , payload) => {
 export let getStudentInfo = ({commit}) => {
       globalState.httpSettings.url = `${globalState.host}/api/student`;
       globalState.httpSettings.method = 'GET';
-  
+
       $.ajax(globalState.httpSettings)
       .done(function (response) {
           commit('setStudent', response);

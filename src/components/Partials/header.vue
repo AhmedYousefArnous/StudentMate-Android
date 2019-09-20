@@ -2,12 +2,12 @@
     <div class="row justify-content-between px-4 py-2 header"
         :class="[background, color]"
         >
-        <i class="fa fa-bars mt-2"></i>
+        <i class="fa fa-bars"></i>
         <!-- <i class="fa fa-sign-out"></i> -->
-        <img src="static/img/logo-invert.png" alt=""  class="col-9 col-md-4 col-lg-3">
+        <img src="static/logo-invert.png" alt=""  class="col-8 col-md-4 col-lg-3">
         <router-link
             tag="i"
-            class="fa fa-gear mt-2"
+            class="fa fa-gear"
             to="/Settings"
             ></router-link>
     </div>
@@ -32,18 +32,22 @@ export default {
     .header {
         z-index: 3;
         background-color: $color-primary;
-        padding: 10px 15px;
+        padding: 5px 15px;
         font-size: 24px;
         color: white;
         position: fixed;
         top: 0;
         left: 15px;
         width: 100vw;
-        
+        height: 60px;
+        img {
+            height: 50px;
+            max-height: 65px;
+        }
     }
     .fa {
         font-size: 28px;
-        margin-top: 8px;
+        margin-top: 15px;
         /* color: #7e238e; */
     }
     .fa-sign-out {

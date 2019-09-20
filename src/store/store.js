@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 import student from './modules/Student/student'
+import conversation from './modules/Conversation/conversation'
 
 import * as actions from './actions'
 import * as mutations from './mutations'
@@ -15,6 +16,7 @@ export const store = new Vuex.Store({
   mutations,
   actions,
   modules: {
-    student
+    student,
+    conversation
   }
 });
