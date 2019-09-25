@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Splash from '../components/Splash'
 import Main from '../components/Main'
 import Settings from '../components/Settings'
-import Socialization from '../components/Socialization'
+import Networking from '../components/Networking'
 import Calendar from '../components/Calendar'
 
 import Profile from '../components/Profile'
@@ -11,9 +11,9 @@ import PublicProfile from '../components/PublicProfile'
 import EditProfile from '../components/Profile/EditProfile'
 import EditFirstTime from '../components/Profile/EditFirstTime'
 
-import Chat from '../components/Socialization/Chat'
-import Messaging from '../components/Socialization/Messaging'
-import Connections from '../components/Socialization/Connections'
+import Chat from '../components/Networking/Chat'
+import Messaging from '../components/Networking/Messaging'
+import Connections from '../components/Networking/Connections'
 
 import Materials from '../components/Materials'
 
@@ -29,8 +29,8 @@ import LectureDetails from '../components/Materials/LectureDetails'
 
 Vue.use(Router)
 export default new Router({
-  // base: window.location.pathname,
-  mode: 'history',
+  base: window.location.pathname,
+  // mode: 'history',
   routes: [
     { path: '/', name: 'Splash', component: Splash },
     { path: '/main', name: 'Main', component: Main },
@@ -45,7 +45,7 @@ export default new Router({
     { path: '/Chat/:type', name: 'Chat',component: Chat},
     { path: '/Chat/:type/:id', name: 'Messaging', component: Messaging },
     
-    { path: '/Socialization', name: 'Socialization',component: Socialization},
+    { path: '/Networking', name: 'Networking',component: Networking},
 
     { path: '/Materials', name: 'Materials',component: Materials},
     { path: '/Materials/:id',component: Material, children: [

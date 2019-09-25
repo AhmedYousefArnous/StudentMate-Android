@@ -5,7 +5,7 @@
             >
             <span slot="title">
                 <i class="fa fa-comments"></i>
-                Socialization
+                Networking
             </span>
         </app-header>
         <div class="row text-center ">
@@ -120,7 +120,7 @@
   </div>    
 </template>
 <script>
-import Header from './Socialization/Header.vue';
+import Header from './Networking/Header.vue';
 import badge from './Partials/badge.vue';
 export default {
     components: {

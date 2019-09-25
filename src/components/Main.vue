@@ -25,9 +25,9 @@
                 class="col-10 col-md-5 offset-1"></app-card>
 
             <app-card 
-                link="/Socialization"
+                link="/Networking"
                 icon="static/assets/ConnectionsIcon.png"
-                title="Network"
+                title="Networking"
                 text="Lorem ipsum dolor sit amet consectetur adipiscing elit, urna consequat felis vehicula class ultricies mollis dictumst"
                 class="col-10 col-md-5 offset-1"></app-card>
             <app-card 

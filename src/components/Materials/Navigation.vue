@@ -4,23 +4,24 @@
     enter-active-class="animated fadeInUp"
     >
       <div class="navigation-icons">
-            <span class="lectures">
+            <span 
+                class="lectures"
+                @click="$router.push(link + '/Lectures')">
                 <i 
                     class="fa fa-video-camera"
-                    @click="$router.push(link + '/Lectures')"
                 ></i>
                 <span> Lectures </span>
             </span>
-            <span class="parts">
-                <i class="fa fa-file" @click="$router.push(link + '/Parts')"></i>
+            <span class="parts" @click="$router.push(link + '/Parts')">
+                <i class="fa fa-file" ></i>
                 <span> Parts </span>
             </span>
-            <span class="exams">
-                <i class="fa fa-flask" @click="$router.push(link + '/Exams')"></i>                
+            <span class="exams" @click="$router.push(link + '/Exams')">
+                <i class="fa fa-flask" ></i>                
                 <span> Exams </span>
             </span>
-            <span class="recommendations">
-                <i class="fa fa-plus" @click="$router.push(link + '/Recommendations')"></i>            
+            <span class="recommendations"  @click="$router.push(link + '/Recommendations')">
+                <i class="fa fa-plus"></i>            
                 <span> Recommendations </span>
             </span>
      </div>

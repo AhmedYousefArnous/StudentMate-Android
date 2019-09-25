@@ -22,10 +22,19 @@
                         {{ $store.state.student.name }}
                     </h1>
                     <div class="col-12">
-                        <router-link
+                        <!-- <router-link
                             tag="a"
                             class="btn btn-purple btn-sm" 
                             :to="'/profile/' + $store.state.student.id"
+                            >
+                            <i class="fa fa-eye"></i> Visitor View                        
+
+                        </router-link> -->
+
+                        <router-link
+                            tag="a"
+                            class="btn btn-purple btn-sm" 
+                            :to="'/profile'"
                             >
                             <i class="fa fa-eye"></i> Visitor View                        
 

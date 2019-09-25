@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import Header from '../Socialization/Header.vue';
+import Header from '../Networking/Header.vue';
 import Navigation from './Navigation.vue';
 
 export default {

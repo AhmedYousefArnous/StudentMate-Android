@@ -15,7 +15,7 @@
 </template>
 <script>
 import badge from '../Partials/badge'
-import SearchBox from '../Socialization/SearchBox'
+import SearchBox from '../Networking/SearchBox'
 export default {
     components: {
         lectureBadge: badge,

@@ -1,6 +1,6 @@
 <template>
   <router-link 
-        class="col-12 col-sm-6 col-md-4 card card-inverse pb-4"
+        class="col-12 col-sm-6 col-md-4 card card-inverse"
         tag="div"
         :to="link"
         >

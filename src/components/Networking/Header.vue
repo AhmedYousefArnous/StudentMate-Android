@@ -5,15 +5,14 @@
     >
     <div 
         class="d-flex header justify-content-between">
-            <div>
-                <router-link
-                    tag="i"
-                    class="fa fa-angle-left mr-2" 
-                    :to="link"
-                    ></router-link>
-                <slot name="title"></slot>
+            <router-link
+                tag="div"
+                :to="link"
+                >
+                <i class="fa fa-angle-left" ></i>
+                <slot name="title"></slot> 
+            </router-link>
 
-            </div>
             <i class="fa fa-bars mt-1"></i>
         </div>
   </transition>
@@ -41,10 +40,10 @@ export default {
         left: 0;
         width: 100vw;
         .fa-angle-left {
-            font-size: 28px;
+            font-size: 32px;
         }
         span {
-            font-size: 20px;
+            font-size: 16px;
         }
     }    
 </style>

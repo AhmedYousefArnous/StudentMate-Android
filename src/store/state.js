@@ -1,5 +1,5 @@
-export const host = "http://localhost:8000";
-// export const host = "http://104.41.151.31";
+// export const host = "http://localhost:8000";
+export const host = "http://104.41.151.31";
 
 export const token = {
     "token_type": "Bearer",

@@ -4,11 +4,15 @@
         :link="'/Chat/' + $route.params.type"
         >
         <span slot="title">
-            <img 
-                v-if="$route.params.type == 'Conversations'"
-                class="avatar avatar-header mx-1 mb-1"
-                :src="picture"/>
-            <span v-if="$route.params.type == 'Conversations'">John Doe</span>
+                <!-- <img 
+                    class="avatar avatar-header mx-1 mb-2"
+                    :src="picture"/> -->
+            <span 
+                v-if="$route.params.type == 'Conversations'"                                
+                >
+                John Doe
+                <!-- {{conversation.name}} -->
+            </span>
 
             <img 
                 v-if="$route.params.type == 'Groups'"
@@ -108,13 +112,11 @@ export default {
                     dateCheck: false               
                 },
             ],
-            index: 0            
+            index: 0,
+            // conversation: null 
         }
     },
     methods: {
-        ...mapGetters([
-            'host'
-        ]),
         ...mapActions([
             'getStudentInfo'
         ]),
@@ -133,6 +135,10 @@ export default {
         }
     },
     computed: {
+        ...mapGetters([
+            'host',
+            'conversation'
+        ]),
         picture: function() {
             if(this.$route.params.type === 'Conversations') {
                 return this.$store.getters.host + 'users/default.png';
@@ -146,12 +152,33 @@ export default {
                 return this.$store.getters.host + 'channels-notifications/March2019/JfYtBwTlSTAX83RTek5q.png';
             }
         },
-        conversation() {
-            return this.$store.state.conversation;
-        }
+        // conversation: {
+        //     get() {
+        //         return this.$store.getters.conversation;
+        //     },
+        //     set(value) {
+                        
+        //     }
+        // }
     },
     beforeCreate() {
-        this.$store.dispatch('getConversationInfo', this.$route.params.id);
+        this.$store.dispatch('getConversationInfo', this.$route.params.id)
+                    .then(
+                        // () => console.log("Done...!")
+                        // () => 
+                        //  setInterval(() => {
+                        //      this.conversation = this.$store.state.conversation;                             
+                        //  }, 500)
+                        // () => {
+                        //      setInterval(() => {
+                        //         this.conversation = this.$store.getters.conversation;
+                        //      }, 500)
+                            // setTimeout(() => {
+                            //     // console.log("Done...!");
+                            // this.conversation = this.$store.getters.conversation;
+                            // }, 5000)
+                        // } 
+                    );
     },
     created() {
         for (let index = 0; index < this.messages.length; index++) {
@@ -174,7 +201,13 @@ export default {
             var x = document.getElementById("messages-container-" + vm.index);
             window.scrollTo(0, x.offsetTop + x.scrollHeight);
         }, 550);
+        
     },
+    // mounted() {
+    //     setInterval(() => {
+    //         this.conversation = this.$store.state.conversation;                             
+    //     }, 500)
+    // },
     watch: {
         messages: function(value) {
             this.index = value.length - 1;

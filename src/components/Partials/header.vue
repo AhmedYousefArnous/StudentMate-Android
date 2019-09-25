@@ -47,7 +47,7 @@ export default {
     }
     .fa {
         font-size: 28px;
-        margin-top: 15px;
+        margin-top: 10px;
         /* color: #7e238e; */
     }
     .fa-sign-out {

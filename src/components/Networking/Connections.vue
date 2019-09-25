@@ -1,7 +1,7 @@
 <template>
   <div class="container content-container ">
     <app-header
-        link="/Socialization"
+        link="/Networking"
         >
         <span slot="title">
             <i 

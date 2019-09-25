@@ -61,7 +61,7 @@
   </div>
 </template>
 <script>
-import Header from '../Socialization/Header.vue';
+import Header from '../Networking/Header.vue';
 import badge from '../Partials/badge'
 export default {
     components: {
