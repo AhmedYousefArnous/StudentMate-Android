@@ -44,13 +44,13 @@
 </template>
 <script>
 import header from './Partials/header.vue'
-import card from './Partials/card.vue'
+import Card from './Partials/Card.vue'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
     components: {
         'app-header': header,
-        'app-card': card
+        'app-card': Card
     },
      methods: {
         ...mapActions([

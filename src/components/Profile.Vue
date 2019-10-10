@@ -12,7 +12,7 @@
                 class="fa fa-pencil-square fa-fw" 
                 to="/profile/edit"
                 ></router-link>
-        </div>
+        </div> 
         <header class="row card card-inverse">
             <img src="static/profile.png" class="card-img"/>
             <div class="card-img-overlay">
