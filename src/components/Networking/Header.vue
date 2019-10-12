@@ -13,7 +13,7 @@
                 <slot name="title"></slot> 
             </router-link>
 
-            <i class="fa fa-bars mt-1"></i>
+            <i class="fa fa-bars mt-1" @click="$emit('clicked');"></i>
         </div>
   </transition>
 </template>

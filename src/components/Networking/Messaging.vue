@@ -2,6 +2,7 @@
   <div class="container pb-5">
     <conversation-header
         :link="'/Chat/' + $route.params.type"
+        @clicked="overlay = !overlay"
         >
         <span slot="title">
                 <!-- <img 
@@ -28,6 +29,21 @@
             <span v-if="$route.params.type == 'Channels'">CSED 2021</span>
         </span>
     </conversation-header>    
+        <options
+            v-if="overlay"
+            >
+
+            <li 
+                class="list-group-item"                 
+                v-for="(Setting, i) in Settings"
+                :key="i"
+                style="cursor: pointer"
+                v-html="Setting.name"
+                @click="Setting.method">
+            </li>
+
+        </options>
+        
         <transition-group 
             class="content-container d-flex flex-column pb-3"
             enter-active-class="animated bounceInUp"
@@ -77,6 +93,7 @@
 import PersonalMessage from './PersonalMessage.vue';
 import RecievedMessage from './RecievedMessage.vue';
 import SendInput from '../Forms/SendInput.vue';
+import options from '../Partials/options.vue';
 import Header from './Header.vue';
 import {mapGetters, mapActions} from 'vuex'
 
@@ -85,11 +102,16 @@ export default {
      PersonalMessage,
      RecievedMessage,
      SendInput,
-     ConversationHeader: Header 
-
+     ConversationHeader: Header,
+     options
     },
     data: function () {
         return {
+            overlay: true,
+            Settings: [
+                {name: '<i class="fa fa-edit"></i> Update', method: this.updateConversation},
+                {name: '<i class="fa fa-close"></i> Delete', method: this.deleteConversation},
+            ],
             messages: [
                 {
                     mine: true,
@@ -120,6 +142,12 @@ export default {
         ...mapActions([
             'getStudentInfo'
         ]),
+        updateConversation() {
+            console.log("updateConversation...!");
+        },
+        deleteConversation() {
+            console.log("deleteConversation...!");
+        },
         messageSendFunc($event) {
             if ($event == '') return;
             this.messages.push({

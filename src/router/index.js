@@ -29,8 +29,8 @@ import LectureDetails from '../components/Materials/LectureDetails'
 
 Vue.use(Router)
 export default new Router({
-  base: window.location.pathname,
-  // mode: 'history',
+  // base: window.location.pathname,
+  mode: 'history',
   routes: [
     { path: '/', name: 'Splash', component: Splash },
     { path: '/main', name: 'Main', component: Main },

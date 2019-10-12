@@ -63,5 +63,15 @@ export default {
             padding: 1px 5px;
         }
     } 
-    
+    .options-overlay{
+      position: absolute;
+      top: 55px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 55px);
+      background-color: #7F449B80;
+      z-index: 5;
+      overflow: hidden
+
+    }
 </style>
