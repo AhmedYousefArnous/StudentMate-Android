@@ -1,7 +1,8 @@
 import *  as globalState from '../../state'
 
 export const setStudent = (state, payload) => {
-    Object.assign(state, payload);
+    // state = payload;
+    state = Object.assign(state, payload);
 };
 
 export const updateStudentInfoOptionsMutation = (state, payload) => {

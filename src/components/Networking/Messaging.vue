@@ -49,6 +49,7 @@
             enter-active-class="animated bounceInUp"
             tag="div"
             >
+            
             <div 
                 class="messages-container"
                 v-for="(message,index) in messages" 
@@ -73,7 +74,7 @@
                             slot="avatar"
                             class="avatar avatar-msg"
                             v-if="messages[index - 1].mine !== message.mine "
-                            src="static/profile.png"/>
+                            src="/static/profile.png"/>
                         <h3
                             slot="name"
                             class="h5"
@@ -82,9 +83,9 @@
                         <span slot="time" v-if="message.dateCheck">18:30</span>
                         
                     </recieved-message>
-                <!-- </div> -->
-                
-            </div>
+                </div>
+                            
+            
         </transition-group>
         <send-input @messageSend="messageSendFunc($event)"></send-input>
   </div>
@@ -95,7 +96,7 @@ import RecievedMessage from './RecievedMessage.vue';
 import SendInput from '../Forms/SendInput.vue';
 import options from '../Partials/options.vue';
 import Header from './Header.vue';
-import {mapGetters, mapActions} from 'vuex'
+import {mapGetters, mapActions, mapState} from 'vuex'
 
 export default {
     components: {
@@ -107,7 +108,7 @@ export default {
     },
     data: function () {
         return {
-            overlay: true,
+            overlay: false,
             Settings: [
                 {name: '<i class="fa fa-edit"></i> Update', method: this.updateConversation},
                 {name: '<i class="fa fa-close"></i> Delete', method: this.deleteConversation},
@@ -135,38 +136,49 @@ export default {
                 },
             ],
             index: 0,
-            // conversation: null 
+            conversation: {
+                messages: []
+            } 
         }
     },
     methods: {
         ...mapActions([
-            'getStudentInfo'
+            'deleteConversation',
+            'getConversationInfo'        
         ]),
         updateConversation() {
             console.log("updateConversation...!");
         },
         deleteConversation() {
-            console.log("deleteConversation...!");
+            this.$store.dispatch('deleteConversation', this.$route.params.id).then(
+                this.$router.push('/Chat/' + $route.params.type)             
+            )
         },
         messageSendFunc($event) {
-            if ($event == '') return;
-            this.messages.push({
-                mine: true,
-                msg: $event,
-                dateCheck: true
-            });
-            if(this.messages[this.messages.length - 2].mine == 
-                this.messages[this.messages.length - 1].mine) {
-                    this.messages[this.messages.length - 2].dateCheck = false;
-            }
+            // if ($event == '') return;
+            // this.messages.push({
+            //     mine: true,
+            //     msg: $event,
+            //     dateCheck: true
+            // });
+            // if(this.messages[this.messages.length - 2].mine == 
+            //     this.messages[this.messages.length - 1].mine) {
+            //         this.messages[this.messages.length - 2].dateCheck = false;
+            // }
 
         }
     },
     computed: {
         ...mapGetters([
             'host',
-            'conversation'
+            'conversationName',
+            'oppositeConversationStudent',
+            'conversationMessages'
         ]),
+        ...mapState({
+            messagesTest: state => state.conversation
+        }),
+
         picture: function() {
             if(this.$route.params.type === 'Conversations') {
                 return this.$store.getters.host + 'users/default.png';
@@ -183,20 +195,17 @@ export default {
         // conversation: {
         //     get() {
         //         return this.$store.getters.conversation;
-        //     },
-        //     set(value) {
-                        
         //     }
         // }
     },
     beforeCreate() {
         this.$store.dispatch('getConversationInfo', this.$route.params.id)
                     .then(
-                        // () => console.log("Done...!")
+                        // () => console.log(this.conversation)
                         // () => 
-                        //  setInterval(() => {
-                        //      this.conversation = this.$store.state.conversation;                             
-                        //  }, 500)
+                         setInterval(() => {
+                             this.conversation = this.$store.state.conversation;                             
+                         }, 500)
                         // () => {
                         //      setInterval(() => {
                         //         this.conversation = this.$store.getters.conversation;
@@ -209,38 +218,47 @@ export default {
                     );
     },
     created() {
-        for (let index = 0; index < this.messages.length; index++) {
-            if(index == (this.messages.length - 1))
-            {
-                this.messages[index].dateCheck = true;
-                break;
-            }
+        // for (let index = 0; index < this.messages.length; index++) {
+        //     if(index == (this.messages.length - 1))
+        //     {
+        //         this.messages[index].dateCheck = true;
+        //         break;
+        //     }
 
-            if (this.messages[index].mine == this.messages[index + 1 ].mine){
-                this.messages[index].dateCheck = false;
-            } else {
-                this.messages[index].dateCheck = true;
-            }
-        }
+        //     if (this.messages[index].mine == this.messages[index + 1 ].mine){
+        //         this.messages[index].dateCheck = false;
+        //     } else {
+        //         this.messages[index].dateCheck = true;
+        //     }
+        // }
     },
     updated() {
-        var vm = this;
-        setTimeout(function() {
-            var x = document.getElementById("messages-container-" + vm.index);
-            window.scrollTo(0, x.offsetTop + x.scrollHeight);
-        }, 550);
+        // var vm = this;
+        // setTimeout(function() {
+        //     var x = document.getElementById("messages-container-" + vm.index);
+        //     window.scrollTo(0, x.offsetTop + x.scrollHeight);
+        // }, 550);
+        // this.messages = this.conversation.messages;
+        console.log(this.conversation);
+        console.log(this.messagesTest);
+        console.log(this.conversationName);
+        console.log(this.conversationName);
+        // console.log(this.messages);
         
     },
-    // mounted() {
-    //     setInterval(() => {
-    //         this.conversation = this.$store.state.conversation;                             
-    //     }, 500)
-    // },
-    watch: {
-        messages: function(value) {
-            this.index = value.length - 1;
-        }
+    mounted() {
+        // setInterval(() => {
+        //     this.conversation = this.$store.state.conversation;                             
+        // }, 500)
+        console.log(this.conversation);
+        console.log(this.messagesTest);    
+        console.log(this.conversationName);
     },
+    // watch: {
+    //     messages: function(value) {
+    //         this.index = value.length - 1;
+    //     }
+    // },
     
 }
 </script>

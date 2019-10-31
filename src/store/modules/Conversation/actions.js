@@ -19,3 +19,20 @@ export let getConversationInfo = ({commit}, payload) => {
         resolve();
     });
 };
+
+export let deleteConversation = ({commit}, payload) => {
+    return new Promise((resolve, reject) => {
+        globalState.httpSettings.url = `${globalState.host}/api/conversations/${payload}`;
+        globalState.httpSettings.method = 'DELETE';
+
+        $.ajax(globalState.httpSettings)
+        .catch(
+            function (response) {
+                console.log(response);            
+                commit('setLoginDataError', response);
+            }
+        );
+        resolve();
+    });
+};
+

@@ -71,6 +71,7 @@ export default {
     // }
 }
 </script>
+
 <style lang="scss" scoped>
     .row {
         margin-left: 0;
@@ -79,3 +80,4 @@ export default {
     }    
 
 </style>
+
